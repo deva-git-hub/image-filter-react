@@ -1,38 +1,91 @@
-.App {
-  text-align: center;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  background-color: #dadada;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-auto-rows: 200px;
+  grid-template-rows: 1fr auto;
+
+  grid-template-areas:
+    "image sidebar"
+    "slider sidebar";
+  width: 100vw;
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.mainimage {
+  grid-area: image;
+  background-image: url("background.jpg");
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sidebar {
+  grid-area: sidebar;
+  background-color: hsl(255, 100%, 86%);
+  border-left: 1px solid hsl(265, 100%, 56%);
   display: flex;
+
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: stretch;
 }
 
-.App-link {
-  color: #61dafb;
+.sidebar-item {
+  font-size: 18px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  color: rgb(8, 8, 94);
+  font-weight: 700;
+  font-variant: ruby;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  padding: 1rem;
+  position: relative;
+  transition: background-color 150ms;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar-item::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  bottom: 0;
+  height: 1px;
+  background-color: honeydew;
+}
+
+.sidebar-item:last-child::after {
+  display: none;
+}
+
+.sidebar-item:hover,
+.sidebar-item:focus {
+  background-color: hsl(255, 100%, 76%, 0.5);
+}
+
+.sidebar-item.active {
+  background-color: hsl(32, 100%, 75%);
+}
+
+.slider-container {
+  grid-area: slider;
+
+  margin-top: 2rem;
+  padding: 2rem;
+}
+.slider {
+  width: 100%;
+  cursor: pointer;
 }
